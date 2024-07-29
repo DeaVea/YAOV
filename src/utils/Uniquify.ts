@@ -2,6 +2,7 @@
  * Removes duplicate items from the string.
  * @param arr1
  */
+export function uniquify(arr1: undefined): undefined;
 export function uniquify(arr1: string[]): string[];
 export function uniquify(arr1: number[]): number[];
 export function uniquify(arr1: string[] | number[]): string[] | number[] {

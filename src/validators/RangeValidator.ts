@@ -7,7 +7,7 @@ export function rangeValidator(props: {lowestAllowedValue?: number, highestAllow
             return value;
         }
         const { lowestAllowedValue, highestAllowedValue } = props;
-        let errorMsg: string[] = [];
+        const errorMsg: string[] = [];
         let isError = false;
         if (lowestAllowedValue) {
             errorMsg.push(`must be greater than or equal to ${lowestAllowedValue}`);

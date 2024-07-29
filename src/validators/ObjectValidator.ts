@@ -64,7 +64,7 @@ export function objectValidator<T extends object, UpdatedT extends object = T>(v
  * "key"
  * "key[0]"
  */
-const keyRegex = /([^\[\]]+)(\[[0-9]+])?/
+const keyRegex = /([^[\]]+)(\[[0-9]+])?/
 
 function findErrorsOrTransform<T extends object>(validationObj: ValidationObject<T>, objToValidate: unknown, key: StringKeys<T>, ignoreUnknown: boolean): string[] {
     let caughtError: Error;

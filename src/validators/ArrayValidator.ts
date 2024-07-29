@@ -1,7 +1,7 @@
 import { throwErrorIfErrors, ValidationError } from "../ValidationError";
 import { Validator } from "../Validator";
 
-const indexKeyRegex = /([^\[\]]+)(\[([0-9]+)])/
+const indexKeyRegex = /([^[\]]+)(\[([0-9]+)])/
 
 export interface ArrayLimitations {
     maxLength?: number;
