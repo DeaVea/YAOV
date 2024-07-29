@@ -1,0 +1,1 @@
+export type StringKeys<T extends object = object> = Extract<keyof T, string>;

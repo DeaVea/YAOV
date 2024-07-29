@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "esModuleInterop": true,
+        "target": "ES6",
+        "module": "commonjs"
+    }
+}
