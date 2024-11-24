@@ -8,6 +8,67 @@ An object validator that is purely fuctional.
 * Provides very detailed error messaging.  It provides the exact location of where the object did not meet validation.
 * Absolutely no dependencies
 
+## High Level Example
+
+A typical validation schema would look like this:
+
+```Typescript
+
+interface MyObject {
+    type: MyObjectType;
+    name: string;
+    date: Date;
+    history: MyObjectHistory[];
+    homePage?: URL;
+}
+
+const validationObject: ValidationObject<MyObject> = {
+    type: enumValidator("HOME", "AWAY", "EXAMPLE"),
+    name: andValidator([
+        requiredValidator(),
+        stringValidator()
+    ]),
+    date: andValidator(
+        requiredValidator(),
+        dateValidator(),
+    ),
+    historyValidator: andValidator(
+        defaultValidator([]),
+        arrayValidator([
+            requiredValidator(),
+            myCustomHistoryValidator(),
+        ])
+    ),
+    homePage: urlValidator()
+}
+
+const myObjectValidator = objectValidator(validationObject);
+
+const validatedObject = myObjectValidator("root", { ...the object that I want to validate.... });
+console.log(JSON.stringify(validatoedObject, undefined, 2));
+```
+
+An example of the error that is returned for an invalid object would be something like this:
+
+```Typescript
+myObjectValidator("root", {
+    type: "SomethingElse",
+    name: 5,
+    date: "NotADate",
+    homePage: "Just a string."
+});
+/* The following error will have been thrown
+root.type: Invalid value - Expected: "HOME", "AWAY", or "EXAMPLE"; Received: "SomethingElse"
+root.name: Invalid type - Expected: \"string\"; Actual: \"number\"
+root.date: Value "NotADate" is not a valid date.
+root.homePage: Value \"Just a string\" is not a valid URL.
+*/
+```
+
+```
+
+
+
 ## Insructions
 
 The basic premise of this object validator is to put in an object and spit out a mutated, but valid object.
